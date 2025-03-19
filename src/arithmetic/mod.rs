@@ -19,14 +19,14 @@ mod decoder;
 pub use decoder::ArithmeticDecoder;
 
 /// The arithmetic coding compression algorithm.<br>
-/// This is pretty much ripped directly from the excellent mark nelson [blog](https://marknelson.us/posts/2014/10/19/data-compression-with-arithmetic-coding.html),<br>
+/// This is pretty much ripped directly from the excellent mark nelson [blog](https://webcf.waybackmachine.org/web/20241217122540/https://marknelson.us/posts/2014/10/19/data-compression-with-arithmetic-coding.html),<br>
 /// specifically the unsigned int implementation.
 #[derive(Default, Clone, Copy)]
 pub struct ArithmeticCompressor {
   frequencies: FreqTable,
 }
 
-impl Compressor for ArithmeticCompressor {
+unsafe impl Compressor for ArithmeticCompressor {
   type Error = Infallible;
   type Item = u8;
   type Data = bool;

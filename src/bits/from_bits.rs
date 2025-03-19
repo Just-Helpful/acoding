@@ -6,8 +6,13 @@ use std::{
 use crate::Transform;
 
 /// A transform that casts values to bytes
-#[derive(Default)]
 pub struct FromBits<D>(PhantomData<D>);
+
+impl<D> Default for FromBits<D> {
+  fn default() -> Self {
+    Self(PhantomData)
+  }
+}
 
 pub trait IntFromBits: From<bool> + Shl<u32, Output = Self> + BitOrAssign<Self> {
   const BITS: u32;
